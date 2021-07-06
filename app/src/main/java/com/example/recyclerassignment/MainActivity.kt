@@ -1,9 +1,11 @@
 package com.example.recyclerassignment
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.recyclerassignment.databinding.ActivityMainBinding
+import java.text.FieldPosition
 
 class MainActivity: AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -41,5 +43,12 @@ class MainActivity: AppCompatActivity() {
 
         myProfileAdapter= ProfileAdapter(profiles)
         binding.profileRecycler.adapter= myProfileAdapter
+    }
+    override fun OnItemClick( profiles: Profiles, position: Int){
+        val intent=Intent( this, ProfileActivity::class.java)
+        intent.putExtra("Profilefname", profiles.firstName)
+        intent.putExtra("Profilelname", profiles.lastName)
+        intent.putExtra("Profilelogo", profiles.logo.toString())
+        startActivity(intent)
     }
 }
